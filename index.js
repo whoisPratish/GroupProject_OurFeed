@@ -3,23 +3,25 @@ var bodyParser = require("body-parser");
 const app = express();
 const multer = require("multer");
 const path = require("path");
-
+const cookieParser = require("cookie-parser");
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-// Initialize MongoDB connection
+//initialize mongodb connection
 const connection = require("./database/connection");
-connection.once('open', function () {
-    console.log('Database connected successfully');
-});
-
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 
 const routes = require("./routes/route");
-app.use(routes);
+const authRoute = require("./routes/authRoute");
+//routes
 
-// Listen to 8080 port
+app.use("/auth", authRoute);
+app.use(routes);
+//listen to 8080 port
 app.listen(8080, () => {
     console.log('Server is running on port 8080');
+    
 });

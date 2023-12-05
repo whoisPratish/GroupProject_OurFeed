@@ -120,7 +120,7 @@
           passwordError.textContent = "Passwords do not match";
         } else {
           passwordError.textContent = "";
-          // If passwords match, you can forward the form to "/login"
+          // If passwords match, you can forward the form to "/login". 
           document.getElementById("registerForm").action = "/auth/register";
           document.getElementById("registerForm").submit();
         }
