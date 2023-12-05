@@ -1,23 +1,21 @@
-// const mongodb = require("mongoose");
-// require("dotenv").config();
-// const uri = process.env.URI;
-// mongodb.connect(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-
-
 const mongoose = require("mongoose");
 require("dotenv").config();
-
-// URI from the .env file
 const uri = process.env.URI;
 
+// Connect to MongoDB
 mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-// Export the connection object
-module.exports = mongoose.connection;
+const db = mongoose.connection;
+
+db.on("error", (error) => {
+  console.error("MongoDB connection error:", error);
+});
+
+db.once("open", () => {
+  console.log("Connected to MongoDB");
+});
+
+module.exports = db;

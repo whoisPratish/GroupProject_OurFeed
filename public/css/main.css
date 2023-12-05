@@ -10,6 +10,21 @@ header {
   color: white;
   text-align: center;
   padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user {
+  font-size: 20px;
+  font-weight: bold;
+}
+.logout-btn {
+  background-color: crimson;
+  border: none;
+  width: auto;
+  outline: none;
+  padding: 10px 10px 10px;
+  margin-left: 20px;
 }
 
 .logo {
